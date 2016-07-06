@@ -16,7 +16,7 @@ var roleRepairer = {
         }
         // If carrying max energy look for something to repair
         else {
-            var targets = creep.room.find(FIND_MY_STRUCTURES, {
+            var targets = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
                     if (structure.hits < structure.hitsMax) {
