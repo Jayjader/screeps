@@ -49,6 +49,9 @@ var roleRepairer = {
                     creep.moveTo(damaged_structs[0]);
                 }
             }
+            else {
+                roleBuilder.run(creep);
+            }
         }
         // When not repairing: find somewhere to harvest
         else {
