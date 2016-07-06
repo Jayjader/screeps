@@ -46,8 +46,7 @@ module.exports.loop = function () {
                                             : 'Failed to spawn builder. ';
         console.log(message);
     }
-
-    if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    else if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Upgrader' + creeps, {role : 'upgrader'});
