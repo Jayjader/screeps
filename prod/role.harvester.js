@@ -7,6 +7,7 @@ var roleHarvester = {
     run : function(creep) {
         // If not carrying max energy look for somewhere to harvest
         if (creep.carry.energy < creep.carryCapacity) {
+            creep.say('refilling!');
             var sources = creep.room.find(FIND_SOURCES);
             
             // Try to harvest. If out of range then move closer.
@@ -16,6 +17,7 @@ var roleHarvester = {
         }
         // If carrying max energy look for somewhere to deposit it
         else {
+            creep.say('depositing!');
             var targets = creep.room.find(FIND_MY_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy

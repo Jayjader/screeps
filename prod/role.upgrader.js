@@ -9,10 +9,12 @@ var roleupgrader = {
         // stop upgrading when out of energy
         if (creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
+            creep.say('refilling!');
         }
         // start upgrading when refilled completely
         if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
             creep.memory.upgrading = true;
+            creep.say('upgrading!');
         }
 
         // When upgrading: find something to upgrade
