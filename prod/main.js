@@ -27,6 +27,8 @@ module.exports.loop = function () {
         console.log(message);
     }
 
+    /*
+
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
     if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
@@ -46,6 +48,7 @@ module.exports.loop = function () {
             console.log('Spawning new upgrader: ' + newName);
         }
     }
+     */
 
     // Order creeps
     for (var name in Game.creeps) {
