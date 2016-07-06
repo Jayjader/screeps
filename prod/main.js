@@ -20,9 +20,7 @@ module.exports.loop = function () {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    console.log( + builders.length + ' builders; ' +
-                + harvesters.length + ' harvesters; ' +
-                + upgraders.length + ' upgraders');
+    creepNumbers(harvesters, builders, upgraders);
 
     if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
@@ -70,4 +68,10 @@ module.exports.loop = function () {
                 break;
         }
     }
+}
+
+creepNumbers : (harvesters, upgraders, builders) => {
+    console.log( + builders.length + ' builders; ' +
+                + harvesters.length + ' harvesters; ' +
+                + upgraders.length + ' upgraders');
 }
