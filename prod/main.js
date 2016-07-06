@@ -1,6 +1,7 @@
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
+var roleRepairer = require('role.repairer');
 
 function  creepNumbers(harvesters, builders, upgraders, repairers) {
     console.log( + builders.length + ' builders; ' +
@@ -52,6 +53,14 @@ module.exports.loop = function () {
                 'Upgrader' + creeps, {role : 'upgrader'});
         var message = _.isString(newName) ? 'Spawning new upgrader: ' + newName
                                             : 'Failed to spawn upgrader. ';
+        console.log(message);
+    }
+    else if (repairers.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+        creeps += 1;
+        var newName = spawner.createCreep([WORK, CARRY, MOVE],
+                'Repairer' + creeps, {role : 'repairer'});
+        var message = _.isString(newName) ? 'Spawning new repairer: ' + newName
+                                            : 'Failed to spawn repairer. ';
         console.log(message);
     }
 
