@@ -1,7 +1,7 @@
 /* Create the role as a variable */
 var roleHarvester = {
 
-    /** Main function that gives a creep a harvesting order
+    /** Main function that manages a harvester creep
      *  @param {Creep} creep
      **/
     run : function(creep) {
