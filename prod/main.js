@@ -36,8 +36,8 @@ module.exports.loop = function () {
     }
 
     // Order creeps
-    for (creep in Game.creeps) {
-        switch (creep.memory.role) {
+    for (var name in Game.creeps) {
+        switch (Game.creeps[name].memory.role) {
             case 'harvester':
                 roleHarvester.run(creep);
                 break;
