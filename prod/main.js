@@ -12,9 +12,10 @@ module.exports.loop = function () {
             delete Memory.creeps[name];
         }
     }
-/*
     // Auto-spawning
     var spawner = Game.spawns[Spawn1];
+
+    /*
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('harvesters: ' + harvesters.length);
