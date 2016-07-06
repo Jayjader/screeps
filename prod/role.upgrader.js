@@ -1,5 +1,5 @@
 /* Create the role as a variable */
-var roleupgrader = {
+var roleUpgrader = {
 
     /** Main function that manages a upgrader creep
      *  @param {Creep} creep
@@ -36,4 +36,4 @@ var roleupgrader = {
 };
 
 /* Export the role variable */
-module.exports = roleupgrader;
+module.exports = roleUpgrader;

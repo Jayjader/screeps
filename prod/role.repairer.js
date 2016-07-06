@@ -5,17 +5,18 @@ var roleRepairer = {
      *  @param {Creep} creep
      **/
     run : function(creep) {
-        // If not carrying max energy look for somewhere to harvest
-        if (creep.carry.energy < creep.carryCapacity) {
-            var sources = creep.room.find(FIND_SOURCES);
-            
-            // Try to harvest. If out of range then move closer.
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
-            }
+
+        if (creep.memory.repairing && creep.carry.energy == 0) {
+            creep.say('refilling!');
+            creep.memory.repairing = false;
         }
-        // If carrying max energy look for something to repair
-        else {
+
+        if (!creep.memory.repairing && creep.carry.energy == creep.carryCapacity) {
+            creep.say('repairing!');
+            creep.memory.repairing = true;
+        }
+        // WHen repairing: find something to repair
+        if (creep.memory.repairing) {
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
@@ -38,6 +39,15 @@ var roleRepairer = {
                 if (creep.repair(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0]);
                 }
+            }
+        }
+        // When not repairing: find somewhere to harvest
+        else {
+            var sources = creep.room.find(FIND_SOURCES);
+            
+            // Try to harvest. If out of range then move closer.
+            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
             }
         }
     }
