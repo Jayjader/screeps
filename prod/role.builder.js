@@ -9,12 +9,12 @@ var roleBuilder = {
         // stop building when out of energy
         if (creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
-            creep.say('building!');
+            creep.say('refilling!');
         }
         // start building when refilled completely
         if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
             creep.memory.building = true;
-            creep.say('refilling!');
+            creep.say('building!');
         }
 
         // When building: find something to build
