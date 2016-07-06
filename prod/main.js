@@ -22,7 +22,7 @@ module.exports.loop = function () {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
         var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
-                                        : 'Failed to spawn harvester. ';
+                                            : 'Failed to spawn harvester. ';
         console.log(message);
     }
 
@@ -33,13 +33,13 @@ module.exports.loop = function () {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'builder'});
         var message = _.isString(newName) ? 'Spawning new builder: ' + newName
-                                        : 'Failed to spawn builder. ';
+                                            : 'Failed to spawn builder. ';
         console.log(message);
     }
-    /*
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
+    /*
     if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'upgrader'});
