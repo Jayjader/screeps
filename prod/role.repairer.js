@@ -17,6 +17,7 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.repairing) {
+            creep.say('Looking for repair!);
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
@@ -37,9 +38,11 @@ var roleRepairer = {
             });
 
             if (targets.length > 0) {
+                creep.say('found repair!');
                 // If valid target exists try to repair.
                 // If out of range move closer.
                 if (creep.repair(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.say('moving towards damaged structure...');
                     creep.moveTo(targets[0]);
                 }
             }
