@@ -1,3 +1,5 @@
+var roleHarvester = require('role.harvester');
+
 /* Create the role as a variable */
 var roleBuilder = {
 
@@ -19,12 +21,15 @@ var roleBuilder = {
 
         // When building: find something to build
         if (creep.memory.building) {
-            var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if (targets.length > 0) {
+            var construction_sites = creep.room.find(FIND_CONSTRUCTION_SITES);
+            if (construction_sites.length > 0) {
                 // Try to build. If out of range then move closer.
-                if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
+                if (creep.build(construction_sites[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(construction_sites[0]);
                 }
+            }
+            else {
+                roleHarvester.run(creep);
             }
         }
         // When not building: find somewhere to harvest

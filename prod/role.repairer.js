@@ -54,7 +54,7 @@ var roleRepairer = {
         // When not repairing: find somewhere to harvest
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            
+
             // Try to harvest. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0]);
