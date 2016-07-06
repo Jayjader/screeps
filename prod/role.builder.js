@@ -28,11 +28,9 @@ var roleBuilder = {
         // When not building: find somewhere to harvest
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if (targets.length > 0) {
-                // Try to refill. If out of range then move closer.
-                if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(sources[0]);
-                }
+            // Try to refill. If out of range then move closer.
+            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
             }
         }
     }
