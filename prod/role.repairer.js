@@ -19,12 +19,11 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.repairing) {
-            creep.say('Looking for repair!');
             console.log(creep.name + ' looking for repair');
             var damaged_structs = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
-                    if (structure.hits < structure.hitsMax) {
+                    if (structure.hits < 0.75 * structure.hitsMax) {
                         // Only deposit in room-available storage
                         switch (structure.structureType) {
                             case STRUCTURE_SPAWN:
@@ -44,11 +43,9 @@ var roleRepairer = {
             });
 
             if (damaged_structs.length > 0) {
-                creep.say('found repair!');
                 // If valid target exists try to repair.
                 // If out of range move closer.
                 if (creep.repair(damaged_structs[0]) == ERR_NOT_IN_RANGE) {
-                    creep.say('moving towards damaged structure...');
                     creep.moveTo(damaged_structs[0]);
                 }
             }
