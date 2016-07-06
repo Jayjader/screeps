@@ -20,7 +20,7 @@ module.exports.loop = function () {
     if (harvesters.length < 3) {
         var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
-        var message = (newName > 0) ? 'Spawned new harvester: ' : 'Failed to spawn harvester: ';
+        var message = (newName != 0) ? 'Spawned new harvester: ' : 'Failed to spawn harvester: ';
         console.log(message + newName);
     }
 
