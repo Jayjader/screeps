@@ -18,9 +18,8 @@ module.exports.loop = function () {
 
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('harvesters: ' + harvesters.length);
+    //console.log('harvesters: ' + harvesters.length);
 
-    /*
     if (harvesters.length < 2 && spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
@@ -29,6 +28,7 @@ module.exports.loop = function () {
         console.log(message);
     }
 
+    /*
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
     if (builders.length < 4 && spawner.canCreateCreep([WORK, CARRY, MOVE])) {
