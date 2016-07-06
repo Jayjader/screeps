@@ -16,11 +16,11 @@ module.exports.loop = function () {
     // Auto-spawning
     var spawner = Game.spawns['Spawn1'];
 
-    /*
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('harvesters: ' + harvesters.length);
 
+    /*
     if (harvesters.length < 2 && spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
