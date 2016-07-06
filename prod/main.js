@@ -25,12 +25,13 @@ module.exports.loop = function () {
     }
 
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    console.log('builders: ' + builders.length);
     if (builders.length < 2 && harvesters.length > 2) {
         var message = (newName > 0) ? 'Spawned new builder: '
                                     : 'Failed to spawn builder: ';
         console.log(message + newName);
     }
-    
+
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     if (upgraders.length < 2 && harvesters.length > 2) {
         var message = (newName > 0) ? 'Spawned new upgrader: '
