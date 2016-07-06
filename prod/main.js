@@ -2,6 +2,13 @@ var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
+var creepNumbers : (harvesters, upgraders, builders, repairers) => {
+    console.log( + builders.length + ' builders; ' +
+                + harvesters.length + ' harvesters; ' +
+                + upgraders.length + ' upgraders' +
+                + repairers.length + ' repairers');
+}
+
 var creeps = 0;
 // Main loop
 module.exports.loop = function () {
@@ -69,11 +76,4 @@ module.exports.loop = function () {
                 break;
         }
     }
-}
-
-var creepNumbers : (harvesters, upgraders, builders, repairers) => {
-    console.log( + builders.length + ' builders; ' +
-                + harvesters.length + ' harvesters; ' +
-                + upgraders.length + ' upgraders' +
-                + repairers.length + ' repairers');
 }
