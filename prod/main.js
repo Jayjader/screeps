@@ -23,17 +23,17 @@ module.exports.loop = function () {
     }
 
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    if (builders.length < 2) {
-        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
-                undefined, {role : 'builder'});
-        console.log('Spawned new builder: ' + newName);
+    if (builders.length < 2 && harvesters.length > 2) {
+        var message = (newName > 0) ? 'Spawned new harvester: '
+                                    : 'Failed to spawn harvester: ';
+        console.log(message + newName);
     }
     
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    if (upgraders.length < 2) {
-        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
-                undefined, {role : 'upgrader'});
-        console.log('Spawned new upgrader: ' + newName);
+    if (upgraders.length < 2 && harvesters.length > 2) {
+        var message = (newName > 0) ? 'Spawned new harvester: '
+                                    : 'Failed to spawn harvester: ';
+        console.log(message + newName);
     }
 
     // Order creeps
