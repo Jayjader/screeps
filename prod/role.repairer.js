@@ -25,9 +25,12 @@ var roleRepairer = {
                         switch (structure.structureType) {
                             case STRUCTURE_ROAD:
                                 return true;
+                                break;
 
+                            case STRUCTURE_WALL:
                             default:
                                 return false;
+                                break;
                         }
                     }
                 }
