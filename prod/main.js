@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
+var creeps = 0;
 // Main loop
 module.exports.loop = function () {
 
@@ -24,15 +25,17 @@ module.exports.loop = function () {
                 + upgraders.length + ' upgraders');
 
     if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+        creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
-                undefined, {role : 'harvester'});
+                'Harvester' + creeps, {role : 'harvester'});
         var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
                                             : 'Failed to spawn harvester. ';
         console.log(message);
     }
     else if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+        creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
-                undefined, {role : 'builder'});
+                'Builder' + creeps, {role : 'builder'});
         var message = _.isString(newName) ? 'Spawning new builder: ' + newName
                                             : 'Failed to spawn builder. ';
         console.log(message);
