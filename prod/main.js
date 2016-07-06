@@ -2,7 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
-function  creepNumbers(harvesters, upgraders, builders, repairers) {
+function  creepNumbers(harvesters, builders, upgraders, repairers) {
     console.log( + builders.length + ' builders; ' +
                 + harvesters.length + ' harvesters; ' +
                 + upgraders.length + ' upgraders; ' +
