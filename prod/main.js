@@ -16,40 +16,36 @@ module.exports.loop = function () {
     // Auto-spawning
     var spawner = Game.spawns['Spawn1'];
 
-
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     //console.log('harvesters: ' + harvesters.length);
 
     if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
-        var message = _.isString(newName) ? 'Spawned new harvester: ' + newName
+        var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
                                         : 'Failed to spawn harvester. ';
         console.log(message);
     }
 
-    /*
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
-    if (builders.length < 4 && spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'builder'});
-        var message = _.isString(newName) ? 'Spawned new builder: ' + newName
+        var message = _.isString(newName) ? 'Spawning new builder: ' + newName
                                         : 'Failed to spawn builder. ';
         console.log(message);
     }
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('upgraders: ' + upgraders.length);
-    if (upgraders.length < 1 && spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'upgrader'});
         if _.isString(newName) {
-            console.log('Spawned new upgrader: ' + newName);
+            console.log('Spawning new upgrader: ' + newName);
         }
     }
-
-    */
 
     // Order creeps
     for (var name in Game.creeps) {
