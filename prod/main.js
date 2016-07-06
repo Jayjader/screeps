@@ -50,7 +50,9 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
         switch (creep.memory.role) {
             case 'harvester':
-                roleHarvester.run(creep);
+                if (creep.room.energyAvailable < creep.room.energyCapacity) {
+                    roleHarvester.run(creep);
+                }
                 break;
 
             case 'builder':
