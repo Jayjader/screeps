@@ -47,15 +47,14 @@ module.exports.loop = function () {
         console.log(message);
     }
 
-    /*
     if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+        creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
-                undefined, {role : 'upgrader'});
+                'Upgrader' + creeps, {role : 'upgrader'});
         if _.isString(newName) {
             console.log('Spawning new upgrader: ' + newName);
         }
     }
-     */
 
     // Order creeps
     for (var name in Game.creeps) {
