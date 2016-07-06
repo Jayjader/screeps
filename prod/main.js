@@ -19,6 +19,7 @@ module.exports.loop = function () {
         if (!Game.creeps[name]) {
             console.log('Clearing non-existing creep memory: ', name);
             delete Memory.creeps[name];
+            creepNumbers(harvesters, builders, upgraders, repairers);
         }
     }
 
@@ -29,7 +30,6 @@ module.exports.loop = function () {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
-    creepNumbers(harvesters, builders, upgraders, repairers);
 
     if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
@@ -38,6 +38,7 @@ module.exports.loop = function () {
         var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
                                             : 'Failed to spawn harvester. ';
         console.log(message);
+        creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
@@ -46,6 +47,7 @@ module.exports.loop = function () {
         var message = _.isString(newName) ? 'Spawning new builder: ' + newName
                                             : 'Failed to spawn builder. ';
         console.log(message);
+        creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
@@ -54,6 +56,7 @@ module.exports.loop = function () {
         var message = _.isString(newName) ? 'Spawning new upgrader: ' + newName
                                             : 'Failed to spawn upgrader. ';
         console.log(message);
+        creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (repairers.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
@@ -62,6 +65,7 @@ module.exports.loop = function () {
         var message = _.isString(newName) ? 'Spawning new repairer: ' + newName
                                             : 'Failed to spawn repairer. ';
         console.log(message);
+        creepNumbers(harvesters, builders, upgraders, repairers);
     }
 
     // Order creeps
