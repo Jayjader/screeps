@@ -12,7 +12,7 @@ module.exports.loop = function () {
             delete Memory.creeps[name];
         }
     }
-
+/*
     // Auto-spawning
     var spawner = Game.spawns[Spawn1];
 
@@ -46,6 +46,8 @@ module.exports.loop = function () {
             console.log('Spawned new upgrader: ' + newName);
         }
     }
+
+    */
 
     // Order creeps
     for (var name in Game.creeps) {
