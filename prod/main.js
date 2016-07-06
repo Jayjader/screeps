@@ -12,8 +12,9 @@ module.exports.loop = function () {
             delete Memory.creeps[name];
         }
     }
+
     // Auto-spawning
-    var spawner = Game.spawns[Spawn1];
+    var spawner = Game.spawns['Spawn1'];
 
     /*
 
