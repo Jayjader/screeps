@@ -12,6 +12,7 @@ module.exports.loop = function () {
             delete Memory.creeps[name];
         }
     }
+    /*
 
     // Auto-spawning
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -44,6 +45,8 @@ module.exports.loop = function () {
                                         : 'Failed to spawn upgrader. ';
         console.log(message);
     }
+
+    */
 
     // Order creeps
     for (var name in Game.creeps) {
