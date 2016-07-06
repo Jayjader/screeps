@@ -69,9 +69,7 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
         switch (creep.memory.role) {
             case 'harvester':
-                //if (creep.room.energyAvailable < creep.room.energyCapacity) {
-                    roleHarvester.run(creep);
-                //}
+                roleHarvester.run(creep);
                 break;
 
             case 'builder':
@@ -80,6 +78,10 @@ module.exports.loop = function () {
 
             case 'upgrader':
                 roleUpgrader.run(creep);
+                break;
+
+            case 'repairer':
+                roleRepairer.run(creep);
                 break;
         }
     }
