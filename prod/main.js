@@ -21,7 +21,7 @@ module.exports.loop = function () {
         var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'harvester'});
         var message = (newName != -6) ? 'Spawned new harvester: ' + newName
-                                        : 'Failed to spawn harvester: ';
+                                        : 'Failed to spawn harvester. ';
         console.log(message);
     }
 
@@ -31,7 +31,7 @@ module.exports.loop = function () {
         var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'builder'});
         var message = (newName != -6) ? 'Spawned new builder: ' + newName
-                                        : 'Failed to spawn builder: ';
+                                        : 'Failed to spawn builder. ';
         console.log(message);
     }
 
@@ -41,7 +41,7 @@ module.exports.loop = function () {
         var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'upgrader'});
         var message = (newName != -6) ? 'Spawned new upgrader: ' + newName
-                                        : 'Failed to spawn upgrader: ';
+                                        : 'Failed to spawn upgrader. ';
         console.log(message);
     }
 
