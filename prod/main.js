@@ -38,7 +38,7 @@ module.exports.loop = function () {
     if (upgraders.length < 2 && harvesters.length > 2) {
         var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
                 undefined, {role : 'upgrader'});
-        var message = (newName > 0) ? 'Spawned new upgrader: '
+        var message = (int(newName) > 0) ? 'Spawned new upgrader: '
                                     : 'Failed to spawn upgrader: ';
         console.log(message + newName);
     }
