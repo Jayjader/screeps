@@ -47,7 +47,7 @@ var roleRepairer = {
                 creep.say('found repair!');
                 // If valid target exists try to repair.
                 // If out of range move closer.
-                if (creep.repair(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.say('moving towards damaged structure...');
                     creep.moveTo(targets[0]);
                 }
