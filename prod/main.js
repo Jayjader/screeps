@@ -27,6 +27,8 @@ module.exports.loop = function () {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('builders: ' + builders.length);
     if (builders.length < 2 && harvesters.length > 2) {
+        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
+                undefined, {role : 'builder'});
         var message = (newName > 0) ? 'Spawned new builder: '
                                     : 'Failed to spawn builder: ';
         console.log(message + newName);
@@ -34,6 +36,8 @@ module.exports.loop = function () {
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     if (upgraders.length < 2 && harvesters.length > 2) {
+        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE],
+                undefined, {role : 'upgrader'});
         var message = (newName > 0) ? 'Spawned new upgrader: '
                                     : 'Failed to spawn upgrader: ';
         console.log(message + newName);
