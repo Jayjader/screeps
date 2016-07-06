@@ -1,3 +1,5 @@
+var roleBuilder = require('role.builder');
+
 /* Create the role as a variable */
 var roleRepairer = {
 
