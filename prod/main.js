@@ -51,9 +51,9 @@ module.exports.loop = function () {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Upgrader' + creeps, {role : 'upgrader'});
-        if _.isString(newName) {
-            console.log('Spawning new upgrader: ' + newName);
-        }
+        var message = _.isString(newName) ? 'Spawning new upgrader: ' + newName
+                                            : 'Failed to spawn upgrader. ';
+        console.log(message);
     }
 
     // Order creeps
