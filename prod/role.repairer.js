@@ -24,6 +24,9 @@ var roleRepairer = {
                     if (structure.hits < structure.hitsMax) {
                         // Only deposit in room-available storage
                         switch (structure.structureType) {
+                            case STRUCTURE_SPAWN:
+                            case STRUCTURE_EXTENSION:
+                            case STRUCTURE_TOWER:
                             case STRUCTURE_ROAD:
                                 return true;
                                 break;
