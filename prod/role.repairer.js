@@ -19,7 +19,7 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.repairing) {
-            var damaged_structs = creep.room.find(FIND_STRUCTURES, {
+            var damaged_structs = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
                     if (structure.hits < 0.75 * structure.hitsMax) {
@@ -56,7 +56,7 @@ var roleRepairer = {
         }
         // When not repairing: find somewhere to harvest
         else {
-            var sources = creep.room.find(FIND_SOURCES);
+            var sources = creep.pos.findClosestByPath(FIND_SOURCES);
 
             // Try to harvest. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
