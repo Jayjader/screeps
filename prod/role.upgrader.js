@@ -7,18 +7,18 @@ var roleUpgrader = {
     run : function(creep) {
     
         // stop upgrading when out of energy
-        if (creep.memory.upgrading && creep.carry.energy == 0) {
-            creep.memory.upgrading = false;
+        if (creep.memory.working && creep.carry.energy == 0) {
+            creep.memory.working = false;
             creep.say('refilling!');
         }
         // start upgrading when refilled completely
-        if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
-            creep.memory.upgrading = true;
+        if (!creep.memory.working && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.working = true;
             creep.say('upgrading!');
         }
 
         // When upgrading: find something to upgrade
-        if (creep.memory.upgrading) {
+        if (creep.memory.working) {
             // Try to upgrade. If out of range then move closer.
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller);
