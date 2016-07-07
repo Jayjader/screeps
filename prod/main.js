@@ -32,7 +32,12 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
 
-    if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    var minHarvesters = 2;
+    var minBuilders = 3;
+    var minUpgraders = 1;
+    var minRepairers = 1;
+
+    if (harvesters.length < minHarvesters && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, WORK, CARRY, MOVE],
                 'Harvester' + creeps, {role : 'harvester'});
@@ -41,7 +46,7 @@ module.exports.loop = function () {
         console.log(message);
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    else if (builders.length < minBuilders && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, WORK, CARRY, MOVE],
                 'Builder' + creeps, {role : 'builder'});
@@ -50,7 +55,7 @@ module.exports.loop = function () {
         console.log(message);
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
+    else if (upgraders.length < minUpgraders && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Upgrader' + creeps, {role : 'upgrader'});
@@ -59,7 +64,7 @@ module.exports.loop = function () {
         console.log(message);
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (repairers.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
+    else if (repairers.length < minRepairers && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Repairer' + creeps, {role : 'repairer'});
