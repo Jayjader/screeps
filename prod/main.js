@@ -34,7 +34,7 @@ module.exports.loop = function () {
 
     if (harvesters.length < 2 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
-        var newName = spawner.createCreep([WORK, CARRY, MOVE],
+        var newName = spawner.createCreep([WORK, WORK, CARRY, MOVE],
                 'Harvester' + creeps, {role : 'harvester'});
         var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
                                             : 'Failed to spawn harvester. ';
@@ -43,14 +43,14 @@ module.exports.loop = function () {
     }
     else if (builders.length < 4 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
         creeps += 1;
-        var newName = spawner.createCreep([WORK, CARRY, MOVE],
+        var newName = spawner.createCreep([WORK, WORK, CARRY, MOVE],
                 'Builder' + creeps, {role : 'builder'});
         var message = _.isString(newName) ? 'Spawning new builder: ' + newName
                                             : 'Failed to spawn builder. ';
         console.log(message);
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    else if (upgraders.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Upgrader' + creeps, {role : 'upgrader'});
@@ -59,7 +59,7 @@ module.exports.loop = function () {
         console.log(message);
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (repairers.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE])) {
+    else if (repairers.length < 1 && !spawner.canCreateCreep([WORK, CARRY, MOVE, MOVE])) {
         creeps += 1;
         var newName = spawner.createCreep([WORK, CARRY, MOVE],
                 'Repairer' + creeps, {role : 'repairer'});
