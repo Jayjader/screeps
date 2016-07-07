@@ -19,7 +19,6 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.repairing) {
-            console.log(creep.name + ' looking for repair');
             var damaged_structs = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
