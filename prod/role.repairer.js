@@ -42,6 +42,8 @@ var roleRepairer = {
             });
 
             if (damaged_structs.length > 0) {
+                // Sort most to least damaged
+                damaged_structs.sort((a,b) => a.hits - b.hits);
                 // If valid target exists try to repair.
                 // If out of range move closer.
                 if (creep.repair(damaged_structs[0]) == ERR_NOT_IN_RANGE) {
