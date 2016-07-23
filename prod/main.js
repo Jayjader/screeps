@@ -19,8 +19,14 @@ function  creepNumbers(harvesters, builders, upgraders, repairers) {
 
 function autospawnCreep(spawner, body, name, memory) {
     var errorcode = spawner.createCreep(body, name, memory);
-    if (errorcode != name && errorcode != ERR_NOT_ENOUGH_ENERGY) {
-        console.log('Failed to spawn ' + name + ': ' + errorcode);
+    switch (errorcode) {
+        case name :
+        case ERR_NOT_ENOUGH_ENERGY :
+        case ERR_BUSY :
+            break;
+
+        default :
+            console.log('Failed to spawn ' + name + ': ' + errorcode);
     }
 }
 
