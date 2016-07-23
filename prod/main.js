@@ -106,6 +106,7 @@ module.exports.loop = function () {
 
     if (creepBuilt) {
         creepNumbers(harvesters, builders, upgraders, repairers);
+        creepBuilt = false;
     }
 
     // Order creeps
