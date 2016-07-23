@@ -42,7 +42,6 @@ var roleRepairer = {
                                 break;
                         }
                     }
-                }
             });
 
             if (damaged_structs.length > 0) {
