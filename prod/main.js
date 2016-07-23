@@ -20,6 +20,12 @@ var creeps = 0;
 // Main loop
 module.exports.loop = function () {
 
+    // Creep census
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+
     // Memory clean-up
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
@@ -31,11 +37,6 @@ module.exports.loop = function () {
 
     // Auto-spawning
     var spawner = Game.spawns['Spawn1'];
-
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
 
     var minHarvesters = 2;
     var minBuilders = 3;
