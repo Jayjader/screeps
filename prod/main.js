@@ -18,9 +18,11 @@ function  creepNumbers(harvesters, builders, upgraders, repairers) {
 }
 
 function autospawnCreep(spawner, body, name, memory) {
-    var errorcode = spawner.createCreep(body, name, memory);
+    var errorcode = spawner.createCreep(body, name + spawner.memory.creepscreated, memory);
     switch (errorcode) {
         case name :
+        case ERR_NAME_EXISTS :
+            spawner.memory.creepscreated += 1;
         case ERR_NOT_ENOUGH_ENERGY :
         case ERR_BUSY :
             break;
@@ -60,20 +62,19 @@ module.exports.loop = function () {
     var minRepairers = 2;
 
     if (harvesters.length < minHarvesters) {
-        spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 hbody,
-                'Harvester' + spawner.memory.creepscreated, {
+                'Harvester',
+                {
                     role : 'harvester',
                     working : false
                 });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (builders.length < minBuilders) {
-        spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 bbody,
-                'Builder' + spawner.memory.creepscreated,
+                'Builder',
                 {
                     role : 'builder',
                     working : false
@@ -81,10 +82,9 @@ module.exports.loop = function () {
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (upgraders.length < minUpgraders) {
-        spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 ubody,
-                'Upgrader' + spawner.memory.creepscreated,
+                'Upgrader',
                 {
                     role : 'upgrader',
                     working : false
@@ -92,10 +92,9 @@ module.exports.loop = function () {
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (repairers.length < minRepairers) {
-        spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 rbody,
-                'Repairer' + spawner.memory.creepscreated,
+                'Repairer',
                 {
                     role : 'repairer',
                     working : false
