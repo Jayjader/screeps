@@ -33,9 +33,12 @@ var roleRepairer = {
                                 break;
 
                             case STRUCTURE_WALL:
-                                // Repair walls up to 1k health for now
-                                if (structure.hits < 1000) {
-                                    return true;
+                                // Filter out 'newbie' walls (have 1 hp max)
+                                if (structure.hitsMax > 1) {
+                                    // Repair walls up to 1k health for now
+                                    if (structure.hits < 1000) {
+                                        return true;
+                                    }
                                 }
                             default:
                                 return false;
