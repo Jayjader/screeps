@@ -1,0 +1,5 @@
+rewrite creep naming to use Spawner1.memory.creepscreated
+rewrite creep auto-spawning to be a function called on each under-populated role
+    function arguments: body, role name, ?memory?
+
+tell victor about screeps :P
