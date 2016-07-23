@@ -41,7 +41,7 @@ var roleHarvester = {
                 // If valid target exists try to supply.
                 // If out of range move closer.
                 if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
+                    creep.moveByPath(targets[0]);
                 }
             }
             else {
@@ -53,7 +53,7 @@ var roleHarvester = {
             
             // Try to harvest. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+                creep.moveByPath(sources[0]);
             }
         }
     }

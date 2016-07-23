@@ -47,7 +47,7 @@ var roleRepairer = {
                 // If valid target exists try to repair.
                 // If out of range move closer.
                 if (creep.repair(damaged_structs[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(damaged_structs[0]);
+                    creep.moveByPath(damaged_structs[0]);
                 }
             }
             else {
@@ -60,7 +60,7 @@ var roleRepairer = {
 
             // Try to harvest. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+                creep.moveByPath(sources[0]);
             }
         }
     }

@@ -25,7 +25,7 @@ var roleBuilder = {
             if (construction_sites.length > 0) {
                 // Try to build. If out of range then move closer.
                 if (creep.build(construction_sites[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(construction_sites[0]);
+                    creep.moveByPath(construction_sites[0]);
                 }
             }
             else {
@@ -37,7 +37,7 @@ var roleBuilder = {
             var sources = creep.room.find(FIND_SOURCES);
             // Try to refill. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+                creep.moveByPath(sources[0]);
             }
         }
     }
