@@ -19,7 +19,7 @@ function  creepNumbers(harvesters, builders, upgraders, repairers) {
 
 function autospawnCreep(spawner, body, name, memory) {
     var errorcode = spawner.createCreep(body, name, memory);
-    if (errorcode != name) {
+    if (errorcode != name && errcode != ERR_NOT_ENOUGH_ENERGY) {
         console.log('Failed to spawn ' + name + ': ' + errorcode);
     }
 }
@@ -53,7 +53,7 @@ module.exports.loop = function () {
     var minUpgraders = 3;
     var minRepairers = 2;
 
-    if (harvesters.length < minHarvesters && !spawner.canCreateCreep(hbody)) {
+    if (harvesters.length < minHarvesters) {
         spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 hbody,
@@ -63,7 +63,7 @@ module.exports.loop = function () {
                 });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (builders.length < minBuilders && !spawner.canCreateCreep(bbody)) {
+    else if (builders.length < minBuilders) {
         spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 bbody,
@@ -74,7 +74,7 @@ module.exports.loop = function () {
                 });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (upgraders.length < minUpgraders && !spawner.canCreateCreep(ubody)) {
+    else if (upgraders.length < minUpgraders) {
         spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 ubody,
@@ -85,7 +85,7 @@ module.exports.loop = function () {
                 });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
-    else if (repairers.length < minRepairers && !spawner.canCreateCreep(rbody)) {
+    else if (repairers.length < minRepairers) {
         spawner.memory.creepscreated += 1;
         autospawnCreep(spawner,
                 rbody,
