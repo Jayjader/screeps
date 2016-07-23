@@ -37,7 +37,7 @@ module.exports.loop = function () {
 
     // Auto-spawning
     var spawner = Game.spawns['Spawn1'];
-    if (spawner.memory.creepscreated) {
+    if (spawner.memory.creepscreated != undefined) {
         spawner.memory.creepscreated += 1;
     }
     else {
