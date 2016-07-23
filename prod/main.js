@@ -4,6 +4,7 @@ var roleUpgrader = require('role.upgrader');
 var roleRepairer = require('role.repairer');
 // require('../ScreepsAutocomplete');
 
+// note: role hierarchy: repairer -> builder -> harvester -> upgrader
 var hbody = [WORK, WORK, CARRY, MOVE];
 var ubody = [WORK, WORK, CARRY, MOVE];
 var bbody = [WORK, WORK, CARRY, MOVE];

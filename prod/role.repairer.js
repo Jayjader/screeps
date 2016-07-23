@@ -21,9 +21,9 @@ var roleRepairer = {
         if (creep.memory.working) {
             var damaged_structs = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter : (structure) => {
-                    // Supply structures that can accept additionnal energy
+                    // Repair structures damaged more than 3/4
                     if (structure.hits < 0.75 * structure.hitsMax) {
-                        // Only deposit in room-available storage
+                        // Only repair my structures for now
                         switch (structure.structureType) {
                             case STRUCTURE_SPAWN:
                             case STRUCTURE_EXTENSION:

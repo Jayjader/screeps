@@ -1,5 +1,4 @@
-// var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
+var roleUpgrader = require('role.upgrader');
 
 /* Create the role as a variable */
 var roleHarvester = {
@@ -46,8 +45,7 @@ var roleHarvester = {
                 }
             }
             else {
-                // roleUpgrader.run(creep);
-                roleBuilder.run(creep);
+                roleUpgrader.run(creep);
             }
         }
         else {
