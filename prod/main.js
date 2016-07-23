@@ -55,7 +55,8 @@ module.exports.loop = function () {
 
     if (harvesters.length < minHarvesters && !spawner.canCreateCreep(hbody)) {
         spawner.memory.creepscreated += 1;
-        autospawnCreep(hbody,
+        autospawnCreep(spawner,
+                hbody,
                 'Harvester' + spawner.memory.creepscreated, {
                     role : 'harvester',
                     working : false
@@ -64,7 +65,8 @@ module.exports.loop = function () {
     }
     else if (builders.length < minBuilders && !spawner.canCreateCreep(bbody)) {
         spawner.memory.creepscreated += 1;
-        autospawnCreep(bbody,
+        autospawnCreep(spawner,
+                bbody,
                 'Builder' + spawner.memory.creepscreated,
                 {
                     role : 'builder',
@@ -74,7 +76,8 @@ module.exports.loop = function () {
     }
     else if (upgraders.length < minUpgraders && !spawner.canCreateCreep(ubody)) {
         spawner.memory.creepscreated += 1;
-        autospawnCreep(ubody,
+        autospawnCreep(spawner,
+                ubody,
                 'Upgrader' + spawner.memory.creepscreated,
                 {
                     role : 'upgrader',
@@ -84,7 +87,8 @@ module.exports.loop = function () {
     }
     else if (repairers.length < minRepairers && !spawner.canCreateCreep(rbody)) {
         spawner.memory.creepscreated += 1;
-        autospawnCreep(rbody,
+        autospawnCreep(spawner,
+                rbody,
                 'Repairer' + spawner.memory.creepscreated,
                 {
                     role : 'repairer',
