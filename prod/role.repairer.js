@@ -51,6 +51,7 @@ var roleRepairer = {
                 }
             }
             else {
+                creep.say('found nothing to repair, building instead!');
                 roleBuilder.run(creep);
             }
         }
