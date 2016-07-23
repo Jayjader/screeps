@@ -23,6 +23,7 @@ function autospawnCreep(spawner, body, name, memory) {
         case name :
         case ERR_NAME_EXISTS :
             spawner.memory.creepscreated += 1;
+            break;
         case ERR_NOT_ENOUGH_ENERGY :
         case ERR_BUSY :
             break;
