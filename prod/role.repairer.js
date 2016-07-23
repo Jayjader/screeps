@@ -19,7 +19,7 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.working) {
-            var damaged_structs = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            var damaged_structs = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
                     // Repair structures damaged more than 3/4
                     if (structure.hits < 0.75 * structure.hitsMax) {
