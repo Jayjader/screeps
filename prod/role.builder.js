@@ -29,7 +29,7 @@ var roleBuilder = {
                 }
             }
             else {
-                roleBuilder.run(creep);
+                roleUpgrader.run(creep);
             }
         }
         // When not building: find somewhere to harvest
