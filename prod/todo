@@ -1,3 +1,8 @@
+Harvest from multiple sources, not just the first one:
+    - store source id in creep memory?
+        this seems good as it can easily be adapted to using links and/or
+        containers/storage
+
 Add tiers to creep auto-spawning depending on:
     - how much energy is available?
     - how much energy can be stored?
