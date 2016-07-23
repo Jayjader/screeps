@@ -21,18 +21,22 @@ var roleRepairer = {
         if (creep.memory.working) {
             var damaged_structs = creep.room.find(FIND_STRUCTURES, {
                 filter : (structure) => {
-                    // Repair structures damaged more than 3/4
-                    if (structure.hits < 0.75 * structure.hitsMax) {
-                        // Only repair my structures for now
                         switch (structure.structureType) {
                             case STRUCTURE_SPAWN:
                             case STRUCTURE_EXTENSION:
                             case STRUCTURE_TOWER:
                             case STRUCTURE_ROAD:
-                                return true;
+                                // Repair structures damaged more than 3/4
+                                if (structure.hits < 0.75 * structure.hitsMax) {
+                                    return true;
+                                }
                                 break;
 
                             case STRUCTURE_WALL:
+                                // Repair walls up to 1k health for now
+                                if (structure.hits < 1000) {
+                                    return true;
+                                }
                             default:
                                 return false;
                                 break;
