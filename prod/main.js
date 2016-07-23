@@ -17,6 +17,13 @@ function  creepNumbers(harvesters, builders, upgraders, repairers) {
                 + repairers.length + ' repairers');
 }
 
+function autospawnCreep(spawner, body, name, memory) {
+    var errorcode = spawner.createCreep(body, name, memory);
+    if (errorcode != name) {
+        console.log('Failed to spawn ' + name + ': ' + errorcode);
+    }
+}
+
 // Main loop
 module.exports.loop = function () {
 
@@ -37,10 +44,7 @@ module.exports.loop = function () {
 
     // Auto-spawning
     var spawner = Game.spawns['Spawn1'];
-    if (spawner.memory.creepscreated != undefined) {
-        spawner.memory.creepscreated += 1;
-    }
-    else {
+    if (spawner.memory.creepscreated == undefined) {
         spawner.memory.creepscreated = 0;
     }
 
@@ -50,31 +54,42 @@ module.exports.loop = function () {
     var minRepairers = 2;
 
     if (harvesters.length < minHarvesters && !spawner.canCreateCreep(hbody)) {
-        var newName = spawner.createCreep(hbody, 'Harvester', {role : 'harvester', working : false});
-        var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
-                                            : 'Failed to spawn harvester. ';
-        console.log(message);
+        spawner.memory.creepscreated += 1;
+        autospawnCreep(hbody,
+                'Harvester' + spawner.memory.creepscreated, {
+                    role : 'harvester',
+                    working : false
+                });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (builders.length < minBuilders && !spawner.canCreateCreep(bbody)) {
-        var newName = spawner.createCreep(bbody, 'Builder', {role : 'builder', working : false});
-        var message = _.isString(newName) ? 'Spawning new builder: ' + newName
-                                            : 'Failed to spawn builder. ';
-        console.log(message);
+        spawner.memory.creepscreated += 1;
+        autospawnCreep(bbody,
+                'Builder' + spawner.memory.creepscreated,
+                {
+                    role : 'builder',
+                    working : false
+                });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (upgraders.length < minUpgraders && !spawner.canCreateCreep(ubody)) {
-        var newName = spawner.createCreep(ubody, 'Upgrader', {role : 'upgrader', working : false});
-        var message = _.isString(newName) ? 'Spawning new upgrader: ' + newName
-                                            : 'Failed to spawn upgrader. ';
-        console.log(message);
+        spawner.memory.creepscreated += 1;
+        autospawnCreep(ubody,
+                'Upgrader' + spawner.memory.creepscreated,
+                {
+                    role : 'upgrader',
+                    working : false
+                });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
     else if (repairers.length < minRepairers && !spawner.canCreateCreep(rbody)) {
-        var newName = spawner.createCreep(rbody, 'Repairer', {role : 'repairer', working : false});
-        var message = _.isString(newName) ? 'Spawning new repairer: ' + newName
-                                            : 'Failed to spawn repairer. ';
-        console.log(message);
+        spawner.memory.creepscreated += 1;
+        autospawnCreep(rbody,
+                'Repairer' + spawner.memory.creepscreated,
+                {
+                    role : 'repairer',
+                    working : false
+                });
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
 
