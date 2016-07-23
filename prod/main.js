@@ -30,6 +30,7 @@ function autospawnCreep(spawner, body, name, memory) {
 
         default :
             console.log('Failed to spawn ' + name + ': ' + errorcode);
+            break;
     }
 }
 
