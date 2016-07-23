@@ -11,8 +11,8 @@ var bbody = [WORK, WORK, CARRY, MOVE];
 var rbody = [WORK, CARRY, MOVE, MOVE];
 
 function  creepNumbers(harvesters, builders, upgraders, repairers) {
-    console.log( + builders.length + ' builders; ' +
-                + harvesters.length + ' harvesters; ' +
+    console.log(harvesters.length + ' harvesters; ' +
+                + builders.length + ' builders; ' +
                 + upgraders.length + ' upgraders; ' +
                 + repairers.length + ' repairers');
 }
@@ -46,7 +46,7 @@ module.exports.loop = function () {
         if (!Game.creeps[name]) {
             console.log('Clearing non-existing creep memory: ', name);
             delete Memory.creeps[name];
-            creepNumbers(harvesters, builders, upgraders, repairers);
+            creepBuilt = true;
         }
     }
 
@@ -61,6 +61,8 @@ module.exports.loop = function () {
     var minUpgraders = 3;
     var minRepairers = 2;
 
+    var creepBuilt = false;
+
     if (harvesters.length < minHarvesters) {
         autospawnCreep(spawner,
                 hbody,
@@ -69,7 +71,7 @@ module.exports.loop = function () {
                     role : 'harvester',
                     working : false
                 });
-        creepNumbers(harvesters, builders, upgraders, repairers);
+        creepBuilt = true;
     }
     else if (builders.length < minBuilders) {
         autospawnCreep(spawner,
@@ -79,7 +81,7 @@ module.exports.loop = function () {
                     role : 'builder',
                     working : false
                 });
-        creepNumbers(harvesters, builders, upgraders, repairers);
+        creepBuilt = true;
     }
     else if (upgraders.length < minUpgraders) {
         autospawnCreep(spawner,
@@ -89,7 +91,7 @@ module.exports.loop = function () {
                     role : 'upgrader',
                     working : false
                 });
-        creepNumbers(harvesters, builders, upgraders, repairers);
+        creepBuilt = true;
     }
     else if (repairers.length < minRepairers) {
         autospawnCreep(spawner,
@@ -99,6 +101,10 @@ module.exports.loop = function () {
                     role : 'repairer',
                     working : false
                 });
+        creepBuilt = true;
+    }
+
+    if (creepBuilt) {
         creepNumbers(harvesters, builders, upgraders, repairers);
     }
 
