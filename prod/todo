@@ -1,5 +1,10 @@
-rewrite creep naming to use Spawner1.memory.creepscreated
-rewrite creep auto-spawning to be a function called on each under-populated role
-    function arguments: body, role name, ?memory?
+Add tiers to creep auto-spawning depending on:
+    - how much energy is available?
+    - how much energy can be stored?
+    - how many creeps are alive?
+    - which tier creeps are alive?
+    etc?
 
-tell victor about screeps :P
+Rewrite roles as prototypes? (find a way to reduce common code, like harvesting/refilling behaviours).
+
+Seperate harvesting and refilling/refueling of creeps so that eventually harvesters can be split into harvesters and gatherers)
