@@ -44,7 +44,7 @@ module.exports.loop = function () {
 
     if (harvesters.length < minHarvesters && !spawner.canCreateCreep(hbody)) {
         creeps += 1;
-        var newName = spawner.createCreep(hbody, 'Harvester' + creeps, {role : 'harvester', working = false});
+        var newName = spawner.createCreep(hbody, 'Harvester' + creeps, {role : 'harvester', working : false});
         var message = _.isString(newName) ? 'Spawning new harvester: ' + newName
                                             : 'Failed to spawn harvester. ';
         console.log(message);
@@ -52,7 +52,7 @@ module.exports.loop = function () {
     }
     else if (builders.length < minBuilders && !spawner.canCreateCreep(bbody)) {
         creeps += 1;
-        var newName = spawner.createCreep(bbody, 'Builder' + creeps, {role : 'builder', working = false});
+        var newName = spawner.createCreep(bbody, 'Builder' + creeps, {role : 'builder', working : false});
         var message = _.isString(newName) ? 'Spawning new builder: ' + newName
                                             : 'Failed to spawn builder. ';
         console.log(message);
@@ -60,7 +60,7 @@ module.exports.loop = function () {
     }
     else if (upgraders.length < minUpgraders && !spawner.canCreateCreep(ubody)) {
         creeps += 1;
-        var newName = spawner.createCreep(ubody, 'Upgrader' + creeps, {role : 'upgrader', working = false});
+        var newName = spawner.createCreep(ubody, 'Upgrader' + creeps, {role : 'upgrader', working : false});
         var message = _.isString(newName) ? 'Spawning new upgrader: ' + newName
                                             : 'Failed to spawn upgrader. ';
         console.log(message);
@@ -68,7 +68,7 @@ module.exports.loop = function () {
     }
     else if (repairers.length < minRepairers && !spawner.canCreateCreep(rbody)) {
         creeps += 1;
-        var newName = spawner.createCreep(rbody, 'Repairer' + creeps, {role : 'repairer', working = false});
+        var newName = spawner.createCreep(rbody, 'Repairer' + creeps, {role : 'repairer', working : false});
         var message = _.isString(newName) ? 'Spawning new repairer: ' + newName
                                             : 'Failed to spawn repairer. ';
         console.log(message);
