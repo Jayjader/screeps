@@ -21,6 +21,7 @@ function autospawnCreep(spawner, body, name, memory) {
     var errorcode = spawner.createCreep(body, name + spawner.memory.creepscreated, memory);
     switch (errorcode) {
         case name + spawner.memory.creepscreated :
+            console.log('Spawning creep: ' + errorcode);
         case ERR_NAME_EXISTS :
             spawner.memory.creepscreated += 1;
             break;
