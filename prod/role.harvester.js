@@ -19,6 +19,7 @@ var roleHarvester = {
         }
 
         if (creep.memory.working) {
+            if (creep.room.energyAvailable < creep.room.energyCapacityAvailable) {
             var targets = creep.room.find(FIND_MY_STRUCTURES, {
                 filter : (structure) => {
                     // Supply structures that can accept additionnal energy
@@ -37,7 +38,6 @@ var roleHarvester = {
                 }
             });
 
-            if (targets) {
                 // If valid target exists try to supply.
                 // If out of range move closer.
                 if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
