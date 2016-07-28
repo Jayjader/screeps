@@ -5,10 +5,10 @@ var roleRepairer = require('role.repairer');
 // require('../ScreepsAutocomplete');
 
 // note: role hierarchy: repairer -> builder -> harvester -> upgrader
-var hbody = [WORK, WORK, CARRY, MOVE];
-var ubody = [WORK, WORK, CARRY, MOVE];
-var bbody = [WORK, WORK, CARRY, MOVE];
-var rbody = [WORK, CARRY, MOVE, MOVE];
+var hbody = [WORK, WORK, CARRY, MOVE, MOVE];
+var ubody = [WORK, WORK, CARRY, MOVE, MOVE];
+var bbody = [WORK, WORK, CARRY, MOVE, MOVE];
+var rbody = [WORK, CARRY, CARRY, MOVE, MOVE];
 
 function  creepNumbers(harvesters, builders, upgraders, repairers) {
     console.log(harvesters.length + ' harvesters; ' +
