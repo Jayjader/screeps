@@ -133,4 +133,25 @@ module.exports.loop = function () {
                 break;
         }
     }
+
+    // Order Turret(s)
+    var turrets = spawner.room.find(FIND_MY_STRUCTURES, {
+        filter : (structure) => structure.structureType == STRUCTURE_TOWER });
+
+    if (turrets) {
+        for (let turret of turrets) {
+            // Find enemy creeps and shoot them
+            var targets = turret.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if (targets) {
+                turret.attack(targets[0]);
+            }
+            else {
+                // If no enemy creeps present find damaged friendly creeps to heal
+                targets = turret.room.find(FIND_MY_CREEPS);
+                if (targets.length > 0) {
+                    turret.heal(targets[0]);
+                }
+            }
+        }
+    }
 }
