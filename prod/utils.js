@@ -38,7 +38,7 @@ var utils = {
                                 break;
                         }
                     }
-                }
-    });
+                });
+    }
 }
 module.exports = utils;
