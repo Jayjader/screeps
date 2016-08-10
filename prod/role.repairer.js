@@ -1,4 +1,5 @@
 var roleBuilder = require('role.builder');
+var utils = require('utils');
 
 /* Create the role as a variable */
 var roleRepairer = {
@@ -19,34 +20,7 @@ var roleRepairer = {
         }
         // WHen repairing: find something to repair
         if (creep.memory.working) {
-            var damaged_structs = creep.room.find(FIND_STRUCTURES, {
-                filter : (structure) => {
-                        switch (structure.structureType) {
-                            case STRUCTURE_SPAWN :
-                            case STRUCTURE_EXTENSION :
-                            case STRUCTURE_TOWER :
-                            case STRUCTURE_ROAD :
-                                // Repair structures damaged more than 3/4
-                                if (structure.hits < 0.75 * structure.hitsMax) {
-                                    return true;
-                                }
-                                break;
-
-                            case STRUCTURE_WALL :
-                            case STRUCTURE_RAMPART :
-                                // Filter out 'newbie' walls (have 1 hp max)
-                                if (structure.hitsMax > 1) {
-                                    // Repair walls up to 1k health for now
-                                    if (structure.hits < 1000) {
-                                        return true;
-                                    }
-                                }
-                            default:
-                                return false;
-                                break;
-                        }
-                    }
-            });
+            var damaged_structs = utils.findDamagedStructure(0.75);
 
             if (damaged_structs.length > 0) {
                 // Sort most to least damaged

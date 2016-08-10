@@ -76,7 +76,7 @@ module.exports.loop = function () {
         newname = spawner.createBiggestBalancedCreep(energyCapacity, 'repairer');
     }
 
-    if (_.isString(newname) {
+    if (_.isString(newname)) {
         newname = 0;
     }
 
