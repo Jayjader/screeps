@@ -78,6 +78,7 @@ module.exports.loop = function () {
     }
 
     if (_.isString(newname)) {
+        console.log('Spawning new creep: ' + newname);
         newname = 0;
     }
 
@@ -97,7 +98,7 @@ module.exports.loop = function () {
     }
 
     if (creepBuilt) {
-            creepNumbers(harvesters, builders, upgraders, repairers);
+        creepNumbers(harvesters, builders, upgraders, repairers);
     }
     // Order creeps
     for (var name in Game.creeps) {
