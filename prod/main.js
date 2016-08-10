@@ -4,7 +4,6 @@ var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 var roleRepairer = require('role.repairer');
-// require('../ScreepsAutocomplete');
 
 // note: role hierarchy: repairer -> builder -> harvester -> upgrader
 var hbody = [WORK, WORK, CARRY, MOVE, MOVE];
@@ -42,10 +41,10 @@ module.exports.loop = function () {
         spawner.memory.creepscreated = 0;
     }
 
-    var minHarvesters = 5;
-    var minBuilders = 7;
-    var minUpgraders = 3;
-    var minRepairers = 2;
+    var minHarvesters = 2;
+    var minBuilders = 2;
+    var minUpgraders = 1;
+    var minRepairers = 1;
 
     var creepBuilt = false;
 
@@ -88,6 +87,7 @@ module.exports.loop = function () {
         case ERR_NAME_EXISTS :
             spawner.memory.creepscreated += 1;
             break;
+
         case ERR_NOT_ENOUGH_ENERGY :
         case ERR_BUSY :
             break;
