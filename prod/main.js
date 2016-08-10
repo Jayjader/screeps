@@ -12,7 +12,7 @@ var ubody = [WORK, WORK, CARRY, MOVE, MOVE];
 var bbody = [WORK, WORK, CARRY, MOVE, MOVE];
 var rbody = [WORK, CARRY, CARRY, MOVE, MOVE];
 
-function  creepNumbers(harvesters, builders, upgraders, repairers) {
+function creepNumbers(harvesters, builders, upgraders, repairers) {
     console.log(harvesters.length + ' harvesters; ' +
                 + builders.length + ' builders; ' +
                 + upgraders.length + ' upgraders; ' +
@@ -33,7 +33,6 @@ module.exports.loop = function () {
         if (!Game.creeps[name]) {
             console.log('Clearing non-existing creep memory: ', name);
             delete Memory.creeps[name];
-            creepBuilt = true;
         }
     }
 
@@ -47,6 +46,8 @@ module.exports.loop = function () {
     var minBuilders = 7;
     var minUpgraders = 3;
     var minRepairers = 2;
+
+    var creepBuilt = false;
 
     var energyAvailable = spawner.room.energyAvailable;
     var energyCapacity = spawner.room.energyCapacityAvailable;
@@ -82,7 +83,7 @@ module.exports.loop = function () {
 
     switch (newname) {
         case 0 :
-            creepNumbers(harvesters, builders, upgraders, repairers);
+            creepBuilt = true;
         case ERR_NAME_EXISTS :
             spawner.memory.creepscreated += 1;
             break;
@@ -95,6 +96,9 @@ module.exports.loop = function () {
             break;
     }
 
+    if (creepBuilt) {
+            creepNumbers(harvesters, builders, upgraders, repairers);
+    }
     // Order creeps
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
