@@ -1,6 +1,6 @@
 // import modules
 require('prototype.spawn')();
-require('protoype.room')();
+require('prototype.room')();
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
