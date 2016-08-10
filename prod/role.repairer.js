@@ -18,9 +18,9 @@ var roleRepairer = {
             creep.say('repairing!');
             creep.memory.working = true;
         }
-        // WHen repairing: find something to repair
+        // When repairing: find something to repair
         if (creep.memory.working) {
-            var damaged_structs = utils.findDamagedStructure(0.75);
+            var damaged_structs = utils.findDamagedStructures(0.75);
 
             if (damaged_structs.length > 0) {
                 // Sort most to least damaged
