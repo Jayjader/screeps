@@ -12,11 +12,11 @@ var ubody = [WORK, WORK, CARRY, MOVE, MOVE];
 var bbody = [WORK, WORK, CARRY, MOVE, MOVE];
 var rbody = [WORK, CARRY, CARRY, MOVE, MOVE];
 
-function creepNumbers(harvesters, builders, upgraders, repairers) {
-    console.log(harvesters.length + ' harvesters; ' +
-                + builders.length + ' builders; ' +
-                + upgraders.length + ' upgraders; ' +
-                + repairers.length + ' repairers');
+function creepNumbers(numHarvesters, numBuilders, numUpgraders, numRepairers) {
+    console.log(numHarvesters + ' harvesters; ' +
+                + numBuilders + ' builders; ' +
+                + numUpgraders + ' upgraders; ' +
+                + numRepairers + ' repairers');
 }
 
 // Main loop
@@ -98,7 +98,7 @@ module.exports.loop = function () {
     }
 
     if (creepBuilt) {
-        creepNumbers(harvesters, builders, upgraders, repairers);
+        creepNumbers(numHarvesters, numBuilders, numUpgraders, numRepairers);
     }
     // Order creeps
     for (var name in Game.creeps) {
