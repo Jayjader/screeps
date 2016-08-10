@@ -1,3 +1,5 @@
+// import modules
+require('prototype.spawn')();
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
@@ -17,32 +19,14 @@ function  creepNumbers(harvesters, builders, upgraders, repairers) {
                 + repairers.length + ' repairers');
 }
 
-function autospawnCreep(spawner, body, name, memory) {
-    var errorcode = spawner.createCreep(body, name + spawner.memory.creepscreated, memory);
-    switch (errorcode) {
-        case name + spawner.memory.creepscreated :
-            console.log('Spawning creep: ' + errorcode);
-        case ERR_NAME_EXISTS :
-            spawner.memory.creepscreated += 1;
-            break;
-        case ERR_NOT_ENOUGH_ENERGY :
-        case ERR_BUSY :
-            break;
-
-        default :
-            console.log('Failed to spawn ' + name + ': ' + errorcode);
-            break;
-    }
-}
-
 // Main loop
 module.exports.loop = function () {
 
     // Creep census
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+    var numHarvesters = _.sum(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    var numBuilders = _.sum(Game.creeps, (creep) => creep.memory.role == 'builder');
+    var numUpgraders = _.sum(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    var numRepairers = _.sum(Game.creeps, (creep) => creep.memory.role == 'repairer');
 
     // Memory clean-up
     for (var name in Memory.creeps) {
@@ -64,52 +48,51 @@ module.exports.loop = function () {
     var minUpgraders = 3;
     var minRepairers = 2;
 
-    var creepBuilt = false;
+    var energyAvailable = spawner.room.energyAvailable;
+    var energyCapacity = spawner.room.energyCapacityAvailable;
 
-    if (harvesters.length < minHarvesters) {
-        autospawnCreep(spawner,
-                hbody,
-                'Harvester',
-                {
-                    role : 'harvester',
-                    working : false
-                });
-        creepBuilt = true;
+    var newname = undefined;
+
+    if (numHarvesters < minHarvesters) {
+        // if not enough harvesters, try to spawn the biggest one possible
+        newname = spawner.createBiggestBalancedCreep(energyCapacity, 'harvester');
+
+        // if spawning was too ambitious and there are no harvesters left
+        if (newname == ERR_NOT_ENOUGH_ENERGY && numHarvesters == 0) {
+            // spawn one with what is available
+            newname = spawner.createBiggestBalancedCreep(energyAvailable, 'harvester');
+        }
     }
-    else if (builders.length < minBuilders) {
-        autospawnCreep(spawner,
-                bbody,
-                'Builder',
-                {
-                    role : 'builder',
-                    working : false
-                });
-        creepBuilt = true;
+    else if (numBuilders < minBuilders) {
+        // if not enough builders, try to spawn the biggest one possible
+        newname = spawner.createBiggestBalancedCreep(energyCapacity, 'builder');
     }
-    else if (upgraders.length < minUpgraders) {
-        autospawnCreep(spawner,
-                ubody,
-                'Upgrader',
-                {
-                    role : 'upgrader',
-                    working : false
-                });
-        creepBuilt = true;
+    else if (numUpgraders < minUpgraders) {
+        // if not enough upgraders, try to spawn the biggest one possible
+        newname = spawner.createBiggestBalancedCreep(energyCapacity, 'upgrader');
     }
-    else if (repairers.length < minRepairers) {
-        autospawnCreep(spawner,
-                rbody,
-                'Repairer',
-                {
-                    role : 'repairer',
-                    working : false
-                });
-        creepBuilt = true;
+    else if (numRepairers < minRepairers) {
+        // if not enough repairers, try to spawn the biggest one possible
+        newname = spawner.createBiggestBalancedCreep(energyCapacity, 'repairer');
     }
 
-    if (creepBuilt) {
-        creepNumbers(harvesters, builders, upgraders, repairers);
-        creepBuilt = false;
+    if (_.isString(newname) {
+        newname = 0;
+    }
+
+    switch (newname) {
+        case 0 :
+            creepNumbers(harvesters, builders, upgraders, repairers);
+        case ERR_NAME_EXISTS :
+            spawner.memory.creepscreated += 1;
+            break;
+        case ERR_NOT_ENOUGH_ENERGY :
+        case ERR_BUSY :
+            break;
+
+        default :
+            console.log('Failed to spawn : ' + newname);
+            break;
     }
 
     // Order creeps
