@@ -1,5 +1,6 @@
 // import modules
 require('prototype.spawn')();
+require('protoype.room')();
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
@@ -127,7 +128,7 @@ module.exports.loop = function () {
         filter : (structure) => structure.structureType == STRUCTURE_TOWER });
 
     if (turrets) {
-        for (let turret of turrets) {
+        for (var turret in turrets) {
             // Find enemy creeps and shoot them
             var targets = turret.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if (targets) {
@@ -138,6 +139,13 @@ module.exports.loop = function () {
                 targets = turret.room.find(FIND_MY_CREEPS);
                 if (targets.length > 0) {
                     turret.heal(targets[0]);
+                }
+                else {
+                    // If no friendly creeps damaged find structures to repair
+                    targets = turret.room.findDamagedStructures(0.75);
+                    if (targets.length > 0) {
+                        turret.repair(targets[0]);
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
+require('prototype.room')();
 var roleBuilder = require('role.builder');
-var utils = require('utils');
 
 /* Create the role as a variable */
 var roleRepairer = {
@@ -20,7 +20,7 @@ var roleRepairer = {
         }
         // When repairing: find something to repair
         if (creep.memory.working) {
-            var damaged_structs = utils.findDamagedStructures(0.75);
+            var damaged_structs = creep.room.findDamagedStructures(0.75);
 
             if (damaged_structs.length > 0) {
                 // Sort most to least damaged
