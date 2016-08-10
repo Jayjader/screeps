@@ -4,7 +4,7 @@ module.exports = function() {
      * a float between 0 and 1, represents the health threshold under which a
      * structure needs repair
      **/
-    findDamagedStructures : function(damageThreshold) {
+    Room.protoype.findDamagedStructures = function(damageThreshold) {
         return this.find(
                 FIND_STRUCTURES,
                 {filter : (structure) => {
