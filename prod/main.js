@@ -58,7 +58,7 @@ module.exports.loop = function () {
         // if not enough harvesters, try to spawn the biggest one possible
         newname = spawner.createBiggestBalancedCreep(energyCapacity, 'harvester');
 
-        // if spawning was too ambitious and there are no harvesters left
+        // if spawning was too ambitious and the base is in 'critical condition'
         if (newname == ERR_NOT_ENOUGH_ENERGY && numHarvesters == 0) {
             // spawn one with what is available
             newname = spawner.createBiggestBalancedCreep(energyAvailable, 'harvester');
@@ -91,6 +91,7 @@ module.exports.loop = function () {
 
         case ERR_NOT_ENOUGH_ENERGY :
         case ERR_BUSY :
+        case undefined:
             break;
 
         default :
