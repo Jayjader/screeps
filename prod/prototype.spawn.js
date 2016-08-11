@@ -1,5 +1,12 @@
 module.exports = function() {
     // Custom createCreep function for auto spawning
+    /** Creates the biggest creep with equal WORK, CARRY & MOVE parts possible
+     * with the energy given
+     * @param {int} energy
+     * max energy to be used
+     * @param {str} roleName
+     * spawned creep's role's name
+     **/
     StructureSpawn.prototype.createBiggestBalancedCreep = function(energy, roleName) {
             // create a balanced body as big as possible with the given energy
             var numberOfParts = Math.floor(energy / 200);
