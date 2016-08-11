@@ -128,7 +128,7 @@ module.exports.loop = function () {
         filter : (structure) => structure.structureType == STRUCTURE_TOWER });
 
     if (turrets) {
-        for (var turret in turrets) {
+        for (var turret of turrets) {
             // Find enemy creeps and shoot them
             var targets = turret.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if (targets) {
