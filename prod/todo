@@ -3,12 +3,7 @@ Harvest from multiple sources, not just the first one:
         this seems good as it can easily be adapted to using links and/or
         containers/storage
 
-Add tiers to creep auto-spawning depending on:
-    - how much energy is available?
-    - how much energy can be stored?
-    - how many creeps are alive?
-    - which tier creeps are alive?
-    etc?
+cache paths somewhere to avoid recalculating common paths each tick
 
 Rewrite roles as prototypes? (find a way to reduce common code, like harvesting/refilling behaviours).
 
