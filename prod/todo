@@ -1,8 +1,8 @@
+Finish writing creepController.roleCall and .balanceCreeps
+
 Harvest from multiple sources, not just the first one:
     - store source id in creep memory?
         this seems good as it can easily be adapted to using links and/or
         containers/storage
 
 cache paths somewhere to avoid recalculating common paths each tick
-
-Rewrite roles as prototypes? (find a way to reduce common code, like harvesting/refilling behaviours).
