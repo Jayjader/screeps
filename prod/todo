@@ -6,5 +6,3 @@ Harvest from multiple sources, not just the first one:
 cache paths somewhere to avoid recalculating common paths each tick
 
 Rewrite roles as prototypes? (find a way to reduce common code, like harvesting/refilling behaviours).
-
-Seperate harvesting and refilling/refueling of creeps so that eventually harvesters can be split into harvesters and gatherers)
