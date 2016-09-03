@@ -49,7 +49,9 @@ var roleHarvester = {
             }
         }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
+            var sources = creep.room.find(FIND_SOURCES, {
+                filter : (source) => {return source.energy > 0}
+                }});
 
             // Try to harvest. If out of range then move closer.
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
