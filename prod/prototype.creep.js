@@ -15,7 +15,7 @@ module.exports = function() {
         switch (this.memory.role) {
             case 'harvester':
                 // If the room can hold more energy
-                if (this.room.energyAvailable < this.room.energyCapacityAvailable) {
+                if (this.room.energyAvailable < this.room.energyCapacityAvailable || _.sum(this.room.storage.store) < this.room.storage.storeCapacity) {
                     // find the most appropriate energy source
                     target = Game.flags[this.memory.rallyPoint].pos.findClosestByRange(FIND_SOURCES);
                 }
