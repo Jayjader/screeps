@@ -40,7 +40,7 @@ module.exports = function() {
 
             case 'gatherer':
                 // If there is some energy on the ground, pick it up first
-                var droppedEnergy = this.room.findClosestByRange(FIND_DROPPED_RESOURCES);
+                var droppedEnergy = this.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
                 if (droppedEnergy.length > 0) {
                     target = droppedEnergy[0];
                 }
