@@ -1,35 +1,35 @@
 // import modules
 require('prototype.spawn')();
 require('prototype.room')();
-var roleHarvester = require('role.harvester');
-var roleBuilder = require('role.builder');
-var roleUpgrader = require('role.upgrader');
-var roleRepairer = require('role.repairer');
+let roleHarvester = require('role.harvester');
+let roleBuilder = require('role.builder');
+let roleUpgrader = require('role.upgrader');
+let roleRepairer = require('role.repairer');
 
 // note: role hierarchy: repairer -> builder -> harvester -> upgrader
-var hbody = [WORK, WORK, CARRY, MOVE, MOVE];
-var ubody = [WORK, WORK, CARRY, MOVE, MOVE];
-var bbody = [WORK, WORK, CARRY, MOVE, MOVE];
-var rbody = [WORK, CARRY, CARRY, MOVE, MOVE];
+let hbody = [WORK, WORK, CARRY, MOVE, MOVE];
+let ubody = [WORK, WORK, CARRY, MOVE, MOVE];
+let bbody = [WORK, WORK, CARRY, MOVE, MOVE];
+let rbody = [WORK, CARRY, CARRY, MOVE, MOVE];
 
 function creepNumbers(numHarvesters, numBuilders, numUpgraders, numRepairers) {
     console.log(numHarvesters + ' harvesters; ' +
-                + numBuilders + ' builders; ' +
-                + numUpgraders + ' upgraders; ' +
-                + numRepairers + ' repairers');
+        +numBuilders + ' builders; ' +
+        +numUpgraders + ' upgraders; ' +
+        +numRepairers + ' repairers');
 }
 
 // Main loop
 module.exports.loop = function () {
 
     // Creep census
-    var numHarvesters = _.sum(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var numBuilders = _.sum(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var numUpgraders = _.sum(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var numRepairers = _.sum(Game.creeps, (creep) => creep.memory.role == 'repairer');
+    let numHarvesters = _.sum(Game.creeps, (creep) => creep.memory.role === 'harvester');
+    let numBuilders = _.sum(Game.creeps, (creep) => creep.memory.role === 'builder');
+    let numUpgraders = _.sum(Game.creeps, (creep) => creep.memory.role === 'upgrader');
+    let numRepairers = _.sum(Game.creeps, (creep) => creep.memory.role === 'repairer');
 
     // Memory clean-up
-    for (var name in Memory.creeps) {
+    for (let name in Memory.creeps) {
         if (!Game.creeps[name]) {
             console.log('Clearing non-existing creep memory: ', name);
             delete Memory.creeps[name];
@@ -37,29 +37,29 @@ module.exports.loop = function () {
     }
 
     // Auto-spawning
-    var spawner = Game.spawns['Spawn1'];
-    if (spawner.memory.creepscreated == undefined || spawner.memory.creepscreated > 3000) {
+    let spawner = Game.spawns['Spawn1'];
+    if (spawner.memory.creepscreated === undefined || spawner.memory.creepscreated > 3000) {
         spawner.memory.creepscreated = 0;
     }
 
-    var minHarvesters = 2;
-    var minBuilders = 2;
-    var minUpgraders = 1;
-    var minRepairers = 1;
+    let minHarvesters = 2;
+    let minBuilders = 2;
+    let minUpgraders = 1;
+    let minRepairers = 1;
 
-    var creepBuilt = false;
+    let creepBuilt = false;
 
-    var energyAvailable = spawner.room.energyAvailable;
-    var energyCapacity = spawner.room.energyCapacityAvailable;
+    let energyAvailable = spawner.room.energyAvailable;
+    let energyCapacity = spawner.room.energyCapacityAvailable;
 
-    var newname = undefined;
+    let newname = undefined;
 
     if (numHarvesters < minHarvesters) {
         // if not enough harvesters, try to spawn the biggest one possible
         newname = spawner.createBiggestBalancedCreep(energyCapacity, 'harvester');
 
         // if spawning was too ambitious and the base is in 'critical condition'
-        if (newname == ERR_NOT_ENOUGH_ENERGY && numHarvesters == 0) {
+        if (newname === ERR_NOT_ENOUGH_ENERGY && numHarvesters === 0) {
             // spawn one with what is available
             newname = spawner.createBiggestBalancedCreep(energyAvailable, 'harvester');
         }
@@ -103,8 +103,8 @@ module.exports.loop = function () {
         creepNumbers(numHarvesters, numBuilders, numUpgraders, numRepairers);
     }
     // Order creeps
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[name];
+    for (let name in Game.creeps) {
+        let creep = Game.creeps[name];
         switch (creep.memory.role) {
             case 'harvester':
                 roleHarvester.run(creep);
@@ -125,13 +125,14 @@ module.exports.loop = function () {
     }
 
     // Order Turret(s)
-    var turrets = spawner.room.find(FIND_MY_STRUCTURES, {
-        filter : (structure) => structure.structureType == STRUCTURE_TOWER });
+    let turrets = spawner.room.find(FIND_MY_STRUCTURES, {
+        filter: (structure) => structure.structureType === STRUCTURE_TOWER
+    });
 
     if (turrets) {
-        for (var turret of turrets) {
+        for (let turret of turrets) {
             // Find enemy creeps and shoot them
-            var targets = turret.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            let targets = turret.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if (targets) {
                 turret.attack(targets[0]);
             }

@@ -1,40 +1,31 @@
-module.exports = function() {
+module.exports = function () {
     /** Finds damaged structures
-     * @param {float} damageThreshold
+     * @param {number} damageThreshold
      * a float between 0 and 1, represents the health threshold under which a
      * structure needs repair
      **/
-    Room.prototype.findDamagedStructures = function(damageThreshold) {
+    Room.prototype.findDamagedStructures = function (damageThreshold) {
         return this.find(
-                FIND_STRUCTURES,
-                {filter : (structure) => {
+            FIND_STRUCTURES,
+            {
+                filter: (structure) => {
                     switch (structure.structureType) {
                         case STRUCTURE_SPAWN :
                         case STRUCTURE_EXTENSION :
                         case STRUCTURE_TOWER :
                         case STRUCTURE_ROAD :
                             // Repair structures damaged more than 3/4
-                            if (structure.hits < (damageThreshold * structure.hitsMax)) {
-                                return true;
-                            }
-                            break;
-
+                            return structure.hits < (damageThreshold * structure.hitsMax);
                         case STRUCTURE_WALL :
                             // Filter out 'newbie' walls (have 1 hp max)
-                            if (structure.hitsMax == 1) {
-                                return false;
-                                break;
-                            }
+                            return structure.hitsMax === 1;
                         case STRUCTURE_RAMPART :
                             // Repair ramparts/walls up to 1k health for now
-                            if (structure.hits < 1000) {
-                                return true;
-                            }
-                            break;
+                            return structure.hits < 1000;
                         default:
                             return false;
-                            break;
                     }
-            }});
+                }
+            });
     }
 };

@@ -2,39 +2,39 @@ require('prototype.creep')();
 
 /** Object called by main to controll creeps
  */
-var creepController = {
+let creepController = {
 
     /** method to (re)attribute creep roles
      * @param {Object} roleCount
      * a hash of creep roles & their population
      */
-    balanceCreepRoles : function(roleCount) {
+    balanceCreepRoles: function (roleCount) {
     },
 
     /** function that returns how many creeps are occupying each role
      * @param {Array} roles
      * returns a hash of creep roles & their population
      */
-    rollCall : function(roles) {
-    // Creep census
-    var numHarvesters = _.sum(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var numBuilders = _.sum(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var numUpgraders = _.sum(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var numRepairers = _.sum(Game.creeps, (creep) => creep.memory.role == 'repairer');
-    }
+    rollCall: function (roles) {
+        let counts = {};
+        for (let role in roles) {
+            counts[role] = _.sum(Game.creeps, (creep) => creep.memory.role === role);
+        }
+        return counts;
+    },
 
     /** method that gives a creep a work order
      * @param {Creep} creep
      * the creep to be ordered
      */
-    workCreep : function(creep) {
-        var errcode = undefined;
+    workCreep: function (creep) {
+        let errcode = undefined;
 
         // Use carried energy on appropriate target depending on role
         switch (creep.memory.role) {
             case 'harvester':
             case 'gatherer':
-                errcode = creep.transfer(creep.memory.target);
+                errcode = creep.transfer(creep.memory.target, RESOURCE_ENERGY);
                 break;
 
             case 'builder':
@@ -52,27 +52,27 @@ var creepController = {
         }
 
         // if the target was out of range, move closer to it
-        if (errcode == ERR_NOT_IN_RANGE) {
+        if (errcode === ERR_NOT_IN_RANGE) {
             creep.moveTo(creep.memory.target);
         }
-    }
+    },
 
     /** Main method **/
-    run : function() {
+    run: function () {
         // Count how many creeps are assigned to each role
-        var roleCount = this.rollCall(['harvester', 'builder', 'upgrader',
-                'repairer', 'gatherer']);
+        let roleCount = this.rollCall(['harvester', 'builder', 'upgrader',
+            'repairer', 'gatherer']);
         // Reassign creeps to different roles as needed
         this.balanceCreepRoles(roleCount);
 
         // Order creeps
-        for (var name in Game.creeps) {
-            var creep = Game.creeps[name];
+        for (let name in Game.creeps) {
+            let creep = Game.creeps[name];
             // Creep working <=> creep is carrying energy and is looking to use
             // it
             if (creep.memory.working) {
                 // If creep doesn't have a target find one for it
-                if (creep.memory.target == undefined) {
+                if (creep.memory.target === undefined) {
                     creep.chooseTargetDepot();
                 }
 
@@ -88,11 +88,11 @@ var creepController = {
             // Creep not working <=> creep needs to fill up on energy
             else {
                 // If creep doesn't have a target find one for it
-                if (creep.memory.target == undefined) {
+                if (creep.memory.target === undefined) {
                     creep.chooseRechargeTarget();
                 }
 
-                var errcode = undefined;
+                let errcode = undefined;
 
                 // Try to recharge energy with appropriate method/from
                 // appropriate source (according to role)
@@ -105,7 +105,7 @@ var creepController = {
                     case 'upgrader':
                     case 'repairer':
                     case 'distributor':
-                        errcode = creep.withdraw(creep.memory.target);
+                        errcode = creep.withdraw(creep.memory.target, RESOURCE_ENERGY);
                         break;
 
                     case 'gatherer':
@@ -114,12 +114,12 @@ var creepController = {
                 }
 
                 // if too far away move closer
-                if (errcode == ERR_NOT_IN_RANGE) {
+                if (errcode === ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.memory.target);
                 }
             }
         }
     }
-}
+};
 
 module.exports = creepController;
