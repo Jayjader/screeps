@@ -75,16 +75,16 @@ export const repairer: RoleBehavior<"repairer"> = {
   },
 };
 
-export const roleBehaviors: RoleBehaviors = {
+const roleBehaviors: RoleBehaviors = {
   harvester,
   builder,
   repairer,
 };
 
-function creepAct<role extends Role>(creep: MyCreep<role>) {
-  const { role } = creep.memory;
-  const state = creep.memory.internalState;
+export function creepAct(creep: MyCreep<Role>) {
+  const { role, internalState } = creep.memory;
+  const { state } = internalState;
   const behavior = roleBehaviors[role];
   const stateBehavior = behavior[state];
-  creep.memory = stateBehavior(creep);
+  creep.memory = stateBehavior(internalState, creep);
 }
