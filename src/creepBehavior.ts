@@ -84,8 +84,10 @@ const roleBehaviors: RoleBehaviors = {
 export function creepAct(creep: MyCreep<Role>) {
   const { role, internalState } = creep.memory;
   const { state } = internalState;
+  /*      when decomposing over several lines like so:
   const behavior = roleBehaviors[role];
-  //@ts-ignore :(
   const stateBehavior = behavior[state];
-  creep.memory = stateBehavior(internalState, creep);
+          it's this bit ^^^^^^^^^^^^^^^ that poses problem to the typescript compiler */
+  //@ts-ignore :(
+  creep.memory = roleBehaviors[role][state](internalState, creep);
 }
