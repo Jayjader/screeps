@@ -85,6 +85,7 @@ export function creepAct(creep: MyCreep<Role>) {
   const { role, internalState } = creep.memory;
   const { state } = internalState;
   const behavior = roleBehaviors[role];
+  //@ts-ignore :(
   const stateBehavior = behavior[state];
   creep.memory = stateBehavior(internalState, creep);
 }
